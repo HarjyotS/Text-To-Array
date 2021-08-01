@@ -1,0 +1,133 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text To Array</title>
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #CF8BA9;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            display: inline;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .bo:hover {
+            background-color: #B15E6C;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+        }
+
+        .spec {
+            padding-left: 15%;
+            margin: auto;
+            width: 80%;
+        }
+
+        html {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background: #B3B3F1
+        }
+
+        textarea {
+
+            overflow: auto;
+            width: 40%;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: large;
+            height: 80%;
+            border-radius: 2pc;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-color: #CEC2FF;
+            padding: 2%;
+
+        }
+
+        textarea:focus {
+            outline: none;
+
+
+        }
+    </style>
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 20px;
+
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1, 0.5;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: rgb(0, 225, 255);
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        ::-webkit-resizer {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 200px 200px;
+            border-color: transparent transparent #dcb6d5 transparent;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ToList</h1>
+    <div class="spec">
+        <textarea name="in" id="inout"></textarea>
+        <!-- <br> -->
+        <textarea name="" id="out"></textarea>
+    </div>
+    <div class="center"><button class="bo" onclick="setup();">Convert</button>
+    </div>
+
+    <script>
+
+    </script>
+    <script>
+        function setup() {
+            var arrayOfLines = document.getElementById("inout").value.replace(/^\s*\n/gm, "").split('\n');
+
+            for (let i = 0; i < arrayOfLines.length; i++) {
+                arrayOfLines[i] = `"${arrayOfLines[i]}"`
+            }
+
+            document.getElementById('out').value = `[${arrayOfLines}]`;
+        }
+
+    </script>
+
+</body>
+
+</html>
