@@ -117,9 +117,21 @@
         <textarea name="" id="out"></textarea>
     </div>
     <div class="center">
-        <input type="checkbox" id="remove" name="remove" checked>
+        <input type="checkbox" id="remove" name="remove">
         <label for="remove">
-            <h3>Remove Duplicates</h3>
+            <h3>Remove Duplicates.</h3>
+        </label>
+    </div>
+    <div class="center">
+        <input type="checkbox" id="quotes" name="quotes">
+        <label for="quotes">
+            <h3>Use single quotes instead of double.</h3>
+        </label>
+    </div>
+    <div class="center">
+        <input type="checkbox" id="inters" name="inters">
+        <label for="inters">
+            <h3>Integers Only</h3>
         </label>
     </div>
     <div class="center"><button class="bo" onclick="setup();">Convert</button>
@@ -130,10 +142,15 @@
     </script>
     <script>
         function setup() {
+            let symo = "\""
             var arrayOfLines = document.getElementById("inout").value.replace(/^\s*\n/gm, "").split('\n');
-
+            if (document.getElementById("quotes").checked) {
+                symo = "\'"
+            } else if (document.getElementById("inters").checked) {
+                symo = ""
+            }
             for (let i = 0; i < arrayOfLines.length; i++) {
-                arrayOfLines[i] = `"${arrayOfLines[i]}"`
+                arrayOfLines[i] = `${symo}${arrayOfLines[i]}${symo}`
             }
             if (document.getElementById("remove").checked) {
                 arrayOfLines = arrayOfLines.filter((c, index) => {
