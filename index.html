@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text To Array</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <style>
         .center {
             display: flex;
@@ -114,6 +116,12 @@
         <!-- <br> -->
         <textarea name="" id="out"></textarea>
     </div>
+    <div class="center">
+        <input type="checkbox" id="remove" name="remove" checked>
+        <label for="remove">
+            <h3>Remove Duplicates</h3>
+        </label>
+    </div>
     <div class="center"><button class="bo" onclick="setup();">Convert</button>
     </div>
 
@@ -126,6 +134,11 @@
 
             for (let i = 0; i < arrayOfLines.length; i++) {
                 arrayOfLines[i] = `"${arrayOfLines[i]}"`
+            }
+            if (document.getElementById("remove").checked) {
+                arrayOfLines = arrayOfLines.filter((c, index) => {
+                    return arrayOfLines.indexOf(c) === index;
+                });
             }
 
             document.getElementById('out').value = `[${arrayOfLines}]`;
