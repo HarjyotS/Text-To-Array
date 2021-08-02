@@ -1,9 +1,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Text To Array" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://harjyots.github.io/Text-To-Array/" />
+    <meta property="og:description"
+        content="A simple but powerful text to array converter with unique tools to make the process easier." />
+    <meta name="theme-color" content="#2A9D8F">
     <title>Text To Array</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -18,7 +24,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #CF8BA9;
+            background-color: #2A9D8F;
             border: none;
             color: white;
             padding: 15px 32px;
@@ -29,16 +35,18 @@
         }
 
         .bo:hover {
-            background-color: #B15E6C;
+            background-color: #264653;
         }
 
         h1 {
             text-align: center;
             font-size: 50px;
+            color: #264653;
         }
 
         h2 {
             text-align: center;
+            color: #264653;
         }
 
         .spec {
@@ -48,35 +56,34 @@
         }
 
         html {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            background: #B3B3F1
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+                sans-serif;
+            background: #E9C46A;
         }
 
         textarea {
-
             overflow: auto;
             width: 40%;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+                sans-serif;
             font-size: large;
-            height: 80%;
-            border-radius: 2pc;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            background-color: #CEC2FF;
+            height: 60%;
+            border-radius: 0.75pc;
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+                sans-serif;
+            background-color: #F4A261;
             padding: 2%;
-
+            border: none;
         }
 
         textarea:focus {
             outline: none;
-
-
         }
     </style>
     <style>
         /* width */
         ::-webkit-scrollbar {
             width: 20px;
-
         }
 
         /* Track */
@@ -101,9 +108,7 @@
             height: 0;
             border-style: solid;
             border-width: 0 0 200px 200px;
-            border-color: transparent transparent #dcb6d5 transparent;
-
-
+            border-color: transparent transparent #2A9D8F transparent;
         }
     </style>
 </head>
@@ -112,57 +117,79 @@
     <h1>ToList</h1>
     <h2>Convert text data with newlines to lists!</h2>
     <div class="spec">
-        <textarea name="in" id="inout"></textarea>
-        <!-- <br> -->
-        <textarea name="" id="out"></textarea>
+        <textarea placeholder="Input Your Text Here!" name="in" id="inout"></textarea>
+        <!-- <br> -->&nbsp;
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        &nbsp;
+        <textarea placeholder="Your text will output here, after you convert it!" name="" id="out"></textarea>
     </div>
     <div class="center">
-        <input type="checkbox" id="remove" name="remove">
+        <input type="checkbox" id="remove" name="remove" />
         <label for="remove">
-            <h3>Remove Duplicates.</h3>
+            <h3>Remove Duplicates&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+        </label><input type="checkbox" id="casing" name="casing" />
+        <label for="casing">
+            <h3>Case sensitive</h3>
         </label>
     </div>
     <div class="center">
-        <input type="checkbox" id="quotes" name="quotes">
+        <input type="checkbox" id="quotes" name="quotes" />
         <label for="quotes">
             <h3>Use single quotes instead of double.</h3>
         </label>
     </div>
     <div class="center">
-        <input type="checkbox" id="inters" name="inters">
+        <input type="checkbox" id="inters" name="inters" onclick="togglehide();" />
         <label for="inters">
             <h3>Integers Only</h3>
         </label>
     </div>
-    <div class="center"><button class="bo" onclick="setup();">Convert</button>
+    <div class="center">
+        <button class="bo" onclick="setup();">Convert</button>
     </div>
 
-    <script>
-
-    </script>
+    <script></script>
     <script>
         function setup() {
-            let symo = "\""
-            var arrayOfLines = document.getElementById("inout").value.replace(/^\s*\n/gm, "").split('\n');
+            let symo = '"';
+            var arrayOfLines = document
+                .getElementById("inout")
+                .value.replace(/^\s*\n/gm, "")
+                .split("\n");
             if (document.getElementById("quotes").checked) {
-                symo = "\'"
+                symo = "'";
             } else if (document.getElementById("inters").checked) {
-                symo = ""
+                symo = "";
             }
             for (let i = 0; i < arrayOfLines.length; i++) {
-                arrayOfLines[i] = `${symo}${arrayOfLines[i]}${symo}`
+                arrayOfLines[i] = `${symo}${arrayOfLines[i]}${symo}`;
             }
             if (document.getElementById("remove").checked) {
-                arrayOfLines = arrayOfLines.filter((c, index) => {
-                    return arrayOfLines.indexOf(c) === index;
-                });
+                if (!document.getElementById("casing").checked) {
+                    arrayOfLines = arrayOfLines.filter((c, index) => {
+                        return arrayOfLines.indexOf(c) === index;
+                    });
+                } else {
+                    var caselist = [];
+                    arrayOfLines.forEach(function (c) {
+                        if (!(caselist.includes(c) || caselist.includes(c.toLowerCase())))
+                            caselist.push(c)
+                    });
+                    arrayOfLines = caselist
+                }
+
             }
 
-            document.getElementById('out').value = `[${arrayOfLines}]`;
+            document.getElementById("out").value = `[${arrayOfLines}]`;
         }
+        function togglehide() {
+            var che = document.getElementById("quotes").disabled;
+            document.getElementById("quotes").disabled = !che;
 
+
+        }
     </script>
-
 </body>
 
 </html>
